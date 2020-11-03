@@ -18,3 +18,15 @@ h1 {
     height: 100%;
     background-color: plum;
 }
+
+.city-weather {
+    float: right;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding: 100px;
+    width: 150%;
+    height: 300px;
+    border: 2px solid rgb(233, 126, 162);
+    color: white;
+}

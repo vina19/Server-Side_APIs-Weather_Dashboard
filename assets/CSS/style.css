@@ -1,0 +1,11 @@
+/* Apply to the page header */
+.container-fluid {
+    padding: 20px;
+    background-color: rgb(53, 51, 51);
+}
+
+/* Apply to the title text inside the header */
+h1 {
+    color: white;
+    text-align: center;
+}

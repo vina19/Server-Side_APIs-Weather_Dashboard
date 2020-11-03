@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
 
-    <!-- Bootstrap CDN -->
+    <!-- Bootstrap CDN and icon library-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- CSS style -->
     <link rel="stylesheet"  href="assets/CSS/style.css">
 
@@ -18,7 +19,28 @@
     <div class= "container-fluid">
         <h1>Weather Dashboard</h1>
     </div>
-    
+
+    <div class="row">
+
+        <!-- Search bar and list for the searched city -->
+        <div class="col-md-4 search-city-content">
+
+            <form class="search-city">
+                <label for="city-search">Search for a City: </label>
+                <input type="text" id="city-search" class="city-search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+            
+            <div class="list-group">
+
+                <!-- searched city list goes in here -->
+                <!-- <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis i</a> -->
+                
+            </div>
+        </div>
+
+    </div>
+
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

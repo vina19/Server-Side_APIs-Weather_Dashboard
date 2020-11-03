@@ -9,3 +9,12 @@ h1 {
     color: white;
     text-align: center;
 }
+
+.search-city-content {
+    padding: 30px;
+    clear: both;
+    float: left;
+    width: 20%;
+    height: 100%;
+    background-color: plum;
+}

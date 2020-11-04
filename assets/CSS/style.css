@@ -10,15 +10,24 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    text-align: left;
+}
+
+/* Apply to the search bar and the list of searched city content */
 .search-city-content {
     padding: 30px;
     clear: both;
     float: left;
-    width: 20%;
     height: 100%;
     background-color: plum;
 }
 
+.search-city {
+    margin-left: 20px;
+}
+
+/* Apply to the city weather description box */ 
 .city-weather {
     float: right;
     margin-top: 20px;
@@ -29,4 +38,13 @@ h1 {
     height: 300px;
     border: 2px solid rgb(233, 126, 162);
     color: white;
+}
+
+/* Apply to the 5 day forecast box */
+.five-day-forecast {
+    float: right;
+    padding: 100px;
+    width: 150%;
+    height: 250px;
+    background-color: violet;
 }

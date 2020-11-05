@@ -11,7 +11,7 @@ h1 {
 }
 
 h2 {
-    text-align: left;
+    font-size: medium;
 }
 
 /* Apply to the search bar and the list of searched city content */
@@ -22,6 +22,7 @@ h2 {
     background-color: plum;
 }
 
+/* Apply to the search bar */
 .search-city {
     margin-left: 20px;
 }
@@ -34,20 +35,20 @@ h2 {
     width: 150%;
     height: 300px;
     border: 2px solid rgb(233, 126, 162);
-    color: white;
+    color: black;
 }
 
 /* Apply to the 5 day forecast box */
 .five-day-forecast {
-    padding: 10px;
     width: 150%;
     height: 60%;
+    padding: 10px;
     position: absolute;
     bottom: 0;
     right: 8%;
-    background-color: violet;
 }
 
+/* Apply to the 5 day forecast cards */
 .card {
     width: 18%;
     margin-right: 10px;

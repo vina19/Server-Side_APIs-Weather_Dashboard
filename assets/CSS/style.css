@@ -18,7 +18,6 @@ h2 {
 .search-city-content {
     padding: 30px;
     clear: both;
-    float: left;
     height: 100%;
     background-color: plum;
 }
@@ -29,11 +28,9 @@ h2 {
 
 /* Apply to the city weather description box */ 
 .city-weather {
-    float: right;
     margin-top: 20px;
     margin-left: 20px;
     margin-bottom: 20px;
-    padding: 100px;
     width: 150%;
     height: 300px;
     border: 2px solid rgb(233, 126, 162);
@@ -42,9 +39,16 @@ h2 {
 
 /* Apply to the 5 day forecast box */
 .five-day-forecast {
-    float: right;
-    padding: 100px;
+    padding: 10px;
     width: 150%;
-    height: 250px;
+    height: 60%;
+    position: absolute;
+    bottom: 0;
+    right: 8%;
     background-color: violet;
+}
+
+.card {
+    width: 18%;
+    margin-right: 10px;
 }

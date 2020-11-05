@@ -16,56 +16,69 @@
 <body>
 
     <!-- Page header title -->
-    <div class= "container-fluid">
-        <h1>Weather Dashboard</h1>
-    </div>
+    <header class="bg-dark">
+        Weather Dashboard
+    </header>
 
     <!-- Search bar and list for the searched city -->
-    <div class="row">
-        <div class="col-md-4 search-city-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 search-city-content">
 
-            <!-- Search bar with search icon -->
-            <h2>Search for a City: </h2>
-            <div class="input-group mb-3">
-                <input type="text" id="city-search" class="form-control" class="input-group-append">
-                <button id="search-btn" class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
-            </div>
+                <!-- Search bar with search icon -->
+                <h2>Search for a City: </h2>
+                <div class="input-group mb-3">
+                    <input type="text" id="city-search" class="form-control" class="input-group-append">
+                    <button id="search-btn" class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+                </div>
             
-            <!-- Cities list -->
-            <div class="list-group">
+                <!-- Cities list -->
+                <div class="list-group" id="city-list">
 
-                <!-- searched city list goes in here -->
-                <!-- <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis i</a> -->
+                    <!-- searched city list goes in here -->
+                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis i</a>
+                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis i</a>
+                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis i</a>
+                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis i</a>
+                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis i</a>
                 
+                </div>
             </div>
-        </div>
 
-        <!-- City weather description content -->
-        <div class="col-md-7 city-weather" id="city-weather">
-            <!-- city weather description goes in here -->
-            <!-- Add city name, the date, weather icon conditions, temperature,
-            humidity, wind speed, and UV index -->
-        </div>
+            <!-- City weather description content -->
+            <div class="col-md-7 city-weather">
+                <div id="city-weather">
+                    <!-- city weather description goes in here -->
+                    <!-- Add city name, the date, weather icon conditions, temperature,
+                    humidity, wind speed, and UV index -->
+                </div>
+            </div>
 
-        <!-- Five day forecast content -->
-        <div class="col-md-7 five-day-forecast" id="five-day-forecast">
-            <h3>5-Day Forecast: </h3>
+            <!-- Five day forecast content -->
+            <div class="col-md-7 five-day-forecast">
+                <div id="five-day-forecast">
+                    <h3>5-Day Forecast: </h3>
             
-            <!-- New row for the 5 day forecast cards -->
-            <div class="row" id="forecast-cards">
-                <!-- five day weather forecast goes in here -->
+                    <!-- New row for the 5 day forecast cards -->
+                    <div class="row">
+                        <div class="card" id="forecast-cards">
+                            <!-- five day weather forecast goes in here -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
+    
 
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     
-    <!-- Ajax -->
+    <!-- Ajax and moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <!-- JavaScript -->
     <script src="weather.js"></script>

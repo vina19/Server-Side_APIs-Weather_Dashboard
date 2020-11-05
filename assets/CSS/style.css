@@ -1,22 +1,28 @@
 /* Apply to the page header */
-.container-fluid {
+header {
     padding: 20px;
     background-color: rgb(53, 51, 51);
-}
-
-/* Apply to the title text inside the header */
-h1 {
     color: white;
     text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 25px;
+    font-weight: bold;
 }
 
 h2 {
     font-size: medium;
 }
+h3 {
+    padding: 10px;
+}
 
 /* Apply to the search bar and the list of searched city content */
 .search-city-content {
-    padding: 30px;
+    padding: 20px;
     clear: both;
     height: 100%;
     background-color: plum;
@@ -27,25 +33,34 @@ h2 {
     margin-left: 20px;
 }
 
+.city {
+    text-transform: capitalize;
+}
+
 /* Apply to the city weather description box */ 
 .city-weather {
     margin-top: 20px;
     margin-left: 20px;
     margin-bottom: 20px;
-    width: 150%;
     height: 300px;
     border: 2px solid rgb(233, 126, 162);
     color: black;
 }
+
+#city-weather {
+    padding: 20px;
+    color: black;
+}
+
 
 /* Apply to the 5 day forecast box */
 .five-day-forecast {
     width: 150%;
     height: 60%;
     padding: 10px;
-    position: absolute;
-    bottom: 0;
-    right: 8%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: blueviolet;
 }
 
 /* Apply to the 5 day forecast cards */

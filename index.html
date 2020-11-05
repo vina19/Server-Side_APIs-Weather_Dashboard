@@ -20,18 +20,21 @@
         <h1>Weather Dashboard</h1>
     </div>
 
+    <!-- Search bar and list for the searched city -->
     <div class="row">
-
-        <!-- Search bar and list for the searched city -->
         <div class="col-md-4 search-city-content">
 
+            <!-- Search bar with search icon -->
             <form class="search-city">
-                <label for="city-search">Search for a City: </label>
+                <label for="city-search">
+                    Search for a City: 
+                </label>
                 <br>
                 <input type="text" id="city-search" class="city-search">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
             
+            <!-- Cities list -->
             <div class="list-group">
 
                 <!-- searched city list goes in here -->
@@ -40,13 +43,21 @@
             </div>
         </div>
 
+        <!-- City weather description content -->
         <div class="col-md-7 city-weather">
             <!-- city weather description goes in here -->
+            <!-- Add city name, the date, weather icon conditions, temperature,
+            humidity, wind speed, and UV index -->
         </div>
 
-         <div class="col-md-5 five-day-forecast">
+        <!-- Five day forecast content -->
+         <div class="col-md-7 five-day-forecast">
             <h2>5-Day Forecast: </h2>
-            <!-- five day weather forecast goes in here -->
+            
+            <!-- New row for the 5 day forecast cards -->
+            <div class="row">
+                <!-- five day weather forecast goes in here -->
+            </div>
         </div>
 
     </div>

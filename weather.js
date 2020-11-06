@@ -29,11 +29,14 @@ $(document).ready(function() {
             url: queryURL,
             method: "GET"
         }).then(function(response) {
-            console.log(response);
 
             // Call the getCityWeatherDescription and getUVIndex to fill in the city weather description box
             getCityWeatherDescription(response);
             getUVIndex(response);
+
+            // Call the getFiveDayForecast to show the five day forecast inside the 5 days forecast cards
+            getFiveDayForecast(response);
+
         });
     });
 });
@@ -84,7 +87,6 @@ function getUVIndex(city) {
         url: cityUVIndexQueryUrl,
         method: "GET"
     }).then(function(UVindexResponse) {
-        console.log(UVindexResponse);
 
         // Create <p> element for the UV Index value 
         let cityUVindex = $("<p>");
@@ -95,7 +97,27 @@ function getUVIndex(city) {
         $("#city-weather").append(cityUVindex);
 
     });
+};
 
+// Function to get the five day forecast
+function getFiveDayForecast(city) {
+
+    // Get the city name
+    let cityForecastName = city.name;
+
+    // The URL API to get the 5 day forecast
+    let fiveDayForecastUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityForecastName + "&appid=" + myAPIkey;
+
+    // Create an AJAX call to retrive the five day forecast data
+    $.ajax({
+        url: fiveDayForecastUrl,
+        method: "GET"
+    }).then(function(forecastResponse) {
+
+        console.log(forecastResponse);
+
+        //$("#forecast-cards")
+    });
 };
 
 

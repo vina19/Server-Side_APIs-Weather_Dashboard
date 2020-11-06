@@ -10,6 +10,9 @@ $(document).ready(function() {
         // Get the search city input from the user
         let cityName = $("#city-search").val();
 
+        // Empty the search bar
+        $("#city-search").val("");
+
         // Create a button list with the name of the city that the user input
         let cityList = $("#city-list");
         let city = $("<a>");
@@ -36,6 +39,9 @@ $(document).ready(function() {
 });
 
 function getCityWeatherDescription(city) {
+
+    // Empty the box everytime the user search a different city
+    $("#city-weather").empty();
 
     // Get current date
     let currentDate = moment().format("L");

@@ -1,3 +1,8 @@
+/*Apply to the body */
+body {
+    background-image: url("../Img/711954.jpg");
+}
+
 /* Apply to the page header */
 header {
     padding: 20px;
@@ -8,6 +13,7 @@ header {
     font-weight: bold;
 }
 
+/* Apply to the text */
 h1 {
     font-size: 25px;
     font-weight: bold;
@@ -18,6 +24,11 @@ h2 {
 }
 h3 {
     padding: 10px;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: bold;
 }
 
 /* Apply to the search bar and the list of searched city content */
@@ -44,6 +55,7 @@ h3 {
     margin-bottom: 20px;
     height: 300px;
     border: 2px solid rgb(233, 126, 162);
+    background-color: white;
     color: black;
 }
 
@@ -55,16 +67,17 @@ h3 {
 
 /* Apply to the 5 day forecast box */
 .five-day-forecast {
-    width: 150%;
-    height: 60%;
-    padding: 10px;
+    width: 180%;
+    height: 50%;
+    padding: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 305px;
     background-color: blueviolet;
 }
 
 /* Apply to the 5 day forecast cards */
 .card {
     width: 18%;
-    margin-right: 10px;
+    margin-left: 10px;
 }

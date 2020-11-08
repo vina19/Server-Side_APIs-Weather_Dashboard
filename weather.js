@@ -13,6 +13,7 @@ $(document).ready(function() {
 
         // Empty the search bar
         $("#city-search").val("");
+        
 
         // Create a button list with the name of the city that the user input
         let cityList = $("#city-list");
@@ -143,6 +144,13 @@ function getUVIndex(city) {
 // Function to get the five day forecast
 function getFiveDayForecast(city) {
 
+    // Empty the card
+    $("#forecast-cards-1").empty();
+    $("#forecast-cards-2").empty();
+    $("#forecast-cards-3").empty();
+    $("#forecast-cards-4").empty();
+    $("#forecast-cards-5").empty();
+
     // Get the city name
     let cityForecastName = city.name;
 
@@ -155,31 +163,16 @@ function getFiveDayForecast(city) {
         method: "GET"
     }).then(function(forecastResponse) {
 
-        console.log(forecastResponse);
+        // Get the date from the API
+        let getForecastDay1Date = forecastResponse.list[0].dt_txt;
+        let getForecastDay2Date = forecastResponse.list[6].dt_txt;
+        let getForecastDay3Date = forecastResponse.list[12].dt_txt;
+        let getForecastDay4Date = forecastResponse.list[20].dt_txt;
+        let getForecastDay5Date = forecastResponse.list[28].dt_txt;
 
-        console.log(forecastResponse.list[0].weather[0].icon);
-        console.log(forecastResponse.list[0].main.temp);
-        console.log(forecastResponse.list[0].main.humidity);
-        console.log(forecastResponse.list[0].dt_txt);
-
-        let getForecastDay1Date = moment().add(1, "days").format("YYYY/MM/DD");
-        //let getForecastDay2Date = forecastResponse.list[4].dt_txt;
-        //let getForecastDay3Date = forecastResponse.list[12].dt_txt;
-        //let getForecastDay4Date = forecastResponse.list[20].dt_txt;
-        //let getForecastDay5Date = forecastResponse.list[28].dt_txt;
-
-
-        let cardDeck1El = $("<div>");
-        cardDeck1El.addClass("card-deck");
-
-        let card1El = $("<div>");
-        card1El.addClass("card bg-primary");
-
-        let cardBody1El = $("<div>");
-        cardBody1El.add("card-body text-center");
-
-        let forecastDay1Date = $("<h1>");
-        forecastDay1Date.text(getForecastDay1Date);
+        // Day 1 forecast
+        let forecastDay1Date = $("<h4>");
+        forecastDay1Date.text(getForecastDay1Date.substring(0, 10));
         let forecastIcon1 = $("<img>");
         forecastIcon1.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[1].weather[0].icon + ".png");
         let forecastTemp1 = $("<p>");
@@ -187,16 +180,52 @@ function getFiveDayForecast(city) {
         let forecastHumidity1 = $("<p>");
         forecastHumidity1.text("Humidity: " + forecastResponse.list[1].main.humidity + "%");
 
-        cardBody1El.append(forecastDay1Date, forecastIcon1, forecastTemp1, forecastHumidity1);
-        card1El.append(cardBody1El);
-        cardDeck1El.append(card1El);
+        // Day 2 forecast
+        let forecastDay2Date = $("<h4>");
+        forecastDay2Date.text(getForecastDay2Date.substring(0, 10));
+        let forecastIcon2 = $("<img>");
+        forecastIcon2.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[4].weather[0].icon + ".png");
+        let forecastTemp2 = $("<p>");
+        forecastTemp2.text("Temp: " + forecastResponse.list[4].main.temp + " °F");
+        let forecastHumidity2 = $("<p>");
+        forecastHumidity2.text("Humidity: " + forecastResponse.list[4].main.humidity + "%");
 
+        // Day 3 forecast
+        let forecastDay3Date = $("<h4>");
+        forecastDay3Date.text(getForecastDay3Date.substring(0, 10));
+        let forecastIcon3 = $("<img>");
+        forecastIcon3.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[12].weather[0].icon + ".png");
+        let forecastTemp3 = $("<p>");
+        forecastTemp3.text("Temp: " + forecastResponse.list[12].main.temp + " °F");
+        let forecastHumidity3 = $("<p>");
+        forecastHumidity3.text("Humidity: " + forecastResponse.list[12].main.humidity + "%");
 
+        // Day 4 forecast
+        let forecastDay4Date = $("<h4>");
+        forecastDay4Date.text(getForecastDay4Date.substring(0, 10));
+        let forecastIcon4 = $("<img>");
+        forecastIcon4.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[20].weather[0].icon + ".png");
+        let forecastTemp4 = $("<p>");
+        forecastTemp4.text("Temp: " + forecastResponse.list[20].main.temp + " °F");
+        let forecastHumidity4 = $("<p>");
+        forecastHumidity4.text("Humidity: " + forecastResponse.list[20].main.humidity + "%");
 
+        // Day 5 forecast
+        let forecastDay5Date = $("<h4>");
+        forecastDay5Date.text(getForecastDay5Date.substring(0, 10));
+        let forecastIcon5 = $("<img>");
+        forecastIcon5.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[28].weather[0].icon + ".png");
+        let forecastTemp5 = $("<p>");
+        forecastTemp5.text("Temp: " + forecastResponse.list[28].main.temp + " °F");
+        let forecastHumidity5 = $("<p>");
+        forecastHumidity5.text("Humidity: " + forecastResponse.list[28].main.humidity + "%");
 
-            
+        // Append all the elements to the cards
+        $("#forecast-cards-1").append(forecastDay1Date, forecastIcon1, forecastTemp1, forecastHumidity1);
+        $("#forecast-cards-2").append(forecastDay2Date, forecastIcon2, forecastTemp2, forecastHumidity2);
+        $("#forecast-cards-3").append(forecastDay3Date, forecastIcon3, forecastTemp3, forecastHumidity3);
+        $("#forecast-cards-4").append(forecastDay4Date, forecastIcon4, forecastTemp4, forecastHumidity4);
+        $("#forecast-cards-5").append(forecastDay5Date, forecastIcon5, forecastTemp5, forecastHumidity5);
 
-        $(".card").append(cardDeck1El);
-        
     });
 };

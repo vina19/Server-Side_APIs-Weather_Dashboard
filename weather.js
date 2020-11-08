@@ -49,6 +49,9 @@ function getCityWeatherDescription(city) {
     // Get current date
     let currentDate = moment().format("L");
 
+    // Convert the temperature to Fahrenheit
+    let tempToF = Math.floor((city.main.temp - 273.15) * 1.80 + 32);
+    
     // Create elements and add the city weather descriptions to the box
     // City weather descriptions: Name of the city, current date, temperature,
     // Humidity, wind speed, and UV index (will get this uv index in different function).
@@ -58,15 +61,15 @@ function getCityWeatherDescription(city) {
 
     let cityTemp = $("<p>");
     cityTemp.addClass("city-temp");
-    cityTemp.text("Temperature: " + city.main.temp);
+    cityTemp.text("Temperature: " + tempToF + "F");
 
     let cityHumidity = $("<p>");
     cityHumidity.addClass("city-humidity");
-    cityHumidity.text("Humidity: " + city.main.humidity);
+    cityHumidity.text("Humidity: " + city.main.humidity + "%");
 
     let cityWindSpeed = $("<p>");
     cityWindSpeed.addClass("city-wind-speed");
-    cityWindSpeed.text("Wind Speed: " + city.wind.speed);
+    cityWindSpeed.text("Wind Speed: " + city.wind.speed + "MPH");
 
     // Append all the elements to the box of the city weather descriptions.
     $("#city-weather").append(cityTitle, cityTemp, cityHumidity, cityWindSpeed);

@@ -149,8 +149,16 @@ function getFiveDayForecast(city) {
 
         console.log(forecastResponse);
 
+        console.log(forecastResponse.list[0].weather[0].icon);
+        console.log(forecastResponse.list[0].main.temp);
+        console.log(forecastResponse.list[0].main.humidity);
+
+        let newDiv = $("<div>");
+        let newImg = $("<img>");
+        newImg.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[0].weather[0].icon + ".png");
+
+        newDiv.append(newImg);
+
+        $(".card").append(newDiv);
     });
 };
-
-
-    

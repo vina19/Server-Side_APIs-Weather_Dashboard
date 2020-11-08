@@ -178,12 +178,14 @@ function getFiveDayForecast(city) {
         method: "GET"
     }).then(function(forecastResponse) {
 
+        console.log(forecastResponse);
+
         // Get the date from the API
         let getForecastDay1Date = forecastResponse.list[0].dt_txt;
-        let getForecastDay2Date = forecastResponse.list[6].dt_txt;
-        let getForecastDay3Date = forecastResponse.list[12].dt_txt;
-        let getForecastDay4Date = forecastResponse.list[20].dt_txt;
-        let getForecastDay5Date = forecastResponse.list[28].dt_txt;
+        let getForecastDay2Date = forecastResponse.list[8].dt_txt;
+        let getForecastDay3Date = forecastResponse.list[16].dt_txt;
+        let getForecastDay4Date = forecastResponse.list[24].dt_txt;
+        let getForecastDay5Date = forecastResponse.list[32].dt_txt;
 
         // Day 1 forecast
         let forecastDay1Date = $("<h4>");

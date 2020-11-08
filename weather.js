@@ -98,7 +98,7 @@ function getUVIndex(city) {
         method: "GET"
     }).then(function(UVindexResponse) {
 
-        // Create <p> element for the UV Index value 
+        // Create <p> element for the UV Index and <span> for the value 
         let cityUVindex = $("<p>");
         cityUVindex.addClass("city-uv-index");
         cityUVindex.text("UV Index: ");
@@ -108,14 +108,22 @@ function getUVIndex(city) {
 
         cityUVindex.append(UVIndexText);
 
+        // The if condition to decide which color to give to the uv value text background.
+        // Get the uv index measurment from: https://en.wikipedia.org/wiki/Ultraviolet_index
         if (UVindexResponse.value <= 2) {
             UVIndexText.css({"background": "green", "color": "white", "padding" : "5px"});
         }
-        else if (UVindexResponse.value == 3 || UVindexResponse.value <= 7) {
-            UVIndexText.css({"background": "orange", "color": "white", "padding" : "5px"});
+        else if (UVindexResponse.value == 3 && UVindexResponse.value <= 5) {
+            UVIndexText.css({"background": "yellow", "color": "white", "padding" : "5px"});
         }
-        else if (UVindexResponse >= 8) {
+        else if (UVindexResponse.value == 6 && UVindexResponse.value <= 7) {
+            UVIndexText.css({"background": "orange", "color": "white", "padding" : "5px"});
+        }    
+        else if (UVindexResponse.value == 8 && UVindexResponse.value <= 10) {
             UVIndexText.css({"background": "red", "color": "white", "padding" : "5px"});
+        }
+        else {
+            UVIndexText.css({"background": "violet", "color": "white", "padding" : "5px"});
         }
 
         // Append the UV Index value to the city weather description box
@@ -141,7 +149,6 @@ function getFiveDayForecast(city) {
 
         console.log(forecastResponse);
 
-        //$("#forecast-cards")
     });
 };
 

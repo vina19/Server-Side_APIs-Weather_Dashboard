@@ -14,7 +14,6 @@ $(document).ready(function() {
         // Empty the search bar
         $("#city-search").val("");
         
-
         // Create a button list with the name of the city that the user input
         let cityList = $("#city-list");
         let city = $("<a>");
@@ -38,6 +37,22 @@ $(document).ready(function() {
 
             // Call the getFiveDayForecast to show the five day forecast inside the 5 days forecast cards
             getFiveDayForecast(response);
+
+
+            // After the city button click (still need to fix this)
+            $(".city").on("click", function(){
+
+                $("#city-weather").empty();
+                $("#forecast-cards-1").empty();
+                $("#forecast-cards-2").empty();
+                $("#forecast-cards-3").empty();
+                $("#forecast-cards-4").empty();
+                $("#forecast-cards-5").empty();
+
+                getCityWeatherDescription(response);
+                getUVIndex(response);
+                getFiveDayForecast(response);
+            });
 
         });
     });

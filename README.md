@@ -1,24 +1,23 @@
 # Server-Side_APIs-Weather_Dashboard
-# Third_Party_APIs-Work_Day_Scheduler
 ## Description
-#### This repository is where I created a simple weather dashboard. In this app, the user would be able to see the current weather and 5 day forecast weather from the city that the user can type in inside the search bar. Inside the city weather description, the user would be able to see city name, today's date, temperature 
+#### This repository is where I created a simple weather dashboard. In this app, the user would be able to see the current weather and 5 day forecast weather from the city that the user can type in inside the search bar. Inside the city weather description, the user would be able to see city name, today's date, temperature in Fahrenheit, humidity, wind speed, and UV index. For the UV index, this is the uv measurement scale https://en.wikipedia.org/wiki/Ultraviolet_index, and the color of the number will change based of the risk of harm from unproctected sun exposure for the average adult measurement.
 
 ## Installation
 #### In your terminal, clone this to the folder of your choice.
 
-    git@github.com:vina19/Third_Party_APIs-Work_Day_Scheduler.git
+    https://github.com/vina19/Server-Side_APIs-Weather_Dashboard.git
 
 #### Access the folder with your favorite code editor.
 
 ## Project Example
 
-    https://vina19.github.io/Third_Party_APIs-Work_Day_Scheduler/
+    https://vina19.github.io/Server-Side_APIs-Weather_Dashboard/
 
 ## Weather Dashboard
 
-![hw6](https://user-images.githubusercontent.com/46719712/98486235-bf8d5180-21e1-11eb-9104-f812929174e8.png)
+![hw6](https://user-images.githubusercontent.com/46719712/98486459-fe6fd700-21e2-11eb-88db-077395cdb30b.png)
 
-![hw6-2](https://user-images.githubusercontent.com/46719712/98486238-c1efab80-21e1-11eb-8876-aaba10d02935.png)
+![hw6-2](https://user-images.githubusercontent.com/46719712/98486461-ffa10400-21e2-11eb-93a8-cb58e5304e3a.png)
 
 ## Created using:
 #### - HTML

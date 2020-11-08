@@ -169,6 +169,9 @@ function getFiveDayForecast(city) {
     // Get the city name
     let cityForecastName = city.name;
 
+    // Convert the temperature Celsius to Fahrenheit
+    let tempToF1 = Math.floor((city.main.temp - 273.15) * 1.80 + 32);
+
     // The URL API to get the 5 day forecast
     let fiveDayForecastUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityForecastName + "&appid=" + myAPIkey;
 
@@ -193,7 +196,7 @@ function getFiveDayForecast(city) {
         let forecastIcon1 = $("<img>");
         forecastIcon1.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[1].weather[0].icon + ".png");
         let forecastTemp1 = $("<p>");
-        forecastTemp1.text("Temp: " + forecastResponse.list[1].main.temp + " °F");
+        forecastTemp1.text("Temp: " + Math.floor((forecastResponse.list[1].main.temp - 273.15) * 1.80 + 32) + " °F");
         let forecastHumidity1 = $("<p>");
         forecastHumidity1.text("Humidity: " + forecastResponse.list[1].main.humidity + "%");
 
@@ -203,7 +206,7 @@ function getFiveDayForecast(city) {
         let forecastIcon2 = $("<img>");
         forecastIcon2.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[4].weather[0].icon + ".png");
         let forecastTemp2 = $("<p>");
-        forecastTemp2.text("Temp: " + forecastResponse.list[4].main.temp + " °F");
+        forecastTemp2.text("Temp: " + Math.floor((forecastResponse.list[4].main.temp - 273.15) * 1.80 + 32) + " °F");
         let forecastHumidity2 = $("<p>");
         forecastHumidity2.text("Humidity: " + forecastResponse.list[4].main.humidity + "%");
 
@@ -213,7 +216,7 @@ function getFiveDayForecast(city) {
         let forecastIcon3 = $("<img>");
         forecastIcon3.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[12].weather[0].icon + ".png");
         let forecastTemp3 = $("<p>");
-        forecastTemp3.text("Temp: " + forecastResponse.list[12].main.temp + " °F");
+        forecastTemp3.text("Temp: " + Math.floor((forecastResponse.list[12].main.temp - 273.15) * 1.80 + 32) + " °F");
         let forecastHumidity3 = $("<p>");
         forecastHumidity3.text("Humidity: " + forecastResponse.list[12].main.humidity + "%");
 
@@ -223,7 +226,7 @@ function getFiveDayForecast(city) {
         let forecastIcon4 = $("<img>");
         forecastIcon4.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[20].weather[0].icon + ".png");
         let forecastTemp4 = $("<p>");
-        forecastTemp4.text("Temp: " + forecastResponse.list[20].main.temp + " °F");
+        forecastTemp4.text("Temp: " + Math.floor((forecastResponse.list[20].main.temp - 273.15) * 1.80 + 32) + " °F");
         let forecastHumidity4 = $("<p>");
         forecastHumidity4.text("Humidity: " + forecastResponse.list[20].main.humidity + "%");
 
@@ -233,7 +236,7 @@ function getFiveDayForecast(city) {
         let forecastIcon5 = $("<img>");
         forecastIcon5.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[28].weather[0].icon + ".png");
         let forecastTemp5 = $("<p>");
-        forecastTemp5.text("Temp: " + forecastResponse.list[28].main.temp + " °F");
+        forecastTemp5.text("Temp: " + Math.floor((forecastResponse.list[28].main.temp - 273.15) * 1.80 + 32) + " °F");
         let forecastHumidity5 = $("<p>");
         forecastHumidity5.text("Humidity: " + forecastResponse.list[28].main.humidity + "%");
 

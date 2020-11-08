@@ -49,7 +49,7 @@ function getCityWeatherDescription(city) {
     // Get current date
     let currentDate = moment().format("L");
 
-    // Convert the temperature to Fahrenheit
+    // Convert the temperature Celsius to Fahrenheit
     let tempToF = Math.floor((city.main.temp - 273.15) * 1.80 + 32);
     
     // Create elements and add the city weather descriptions to the box
@@ -57,11 +57,18 @@ function getCityWeatherDescription(city) {
     // Humidity, wind speed, and UV index (will get this uv index in different function).
     let cityTitle = $("<h1>");
     cityTitle.addClass("city-title");
+
+    let weatherIcon = $("<img>");
+    // get the idea of which link  grab the weather icon image from: 
+    // https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
+    weatherIcon.attr("src", "https://openweathermap.org/img/w/" + city.weather[0].icon + ".png");
+    
     cityTitle.text(city.name + " " + currentDate);
+    cityTitle.append(weatherIcon);
 
     let cityTemp = $("<p>");
     cityTemp.addClass("city-temp");
-    cityTemp.text("Temperature: " + tempToF + "F");
+    cityTemp.text("Temperature: " + tempToF + " °F");
 
     let cityHumidity = $("<p>");
     cityHumidity.addClass("city-humidity");
@@ -69,7 +76,7 @@ function getCityWeatherDescription(city) {
 
     let cityWindSpeed = $("<p>");
     cityWindSpeed.addClass("city-wind-speed");
-    cityWindSpeed.text("Wind Speed: " + city.wind.speed + "MPH");
+    cityWindSpeed.text("Wind Speed: " + city.wind.speed + " MPH");
 
     // Append all the elements to the box of the city weather descriptions.
     $("#city-weather").append(cityTitle, cityTemp, cityHumidity, cityWindSpeed);

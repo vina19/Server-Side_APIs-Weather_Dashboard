@@ -9,6 +9,7 @@ $(document).ready(function() {
 
         // Get the search city input from the user
         let cityName = $("#city-search").val();
+        localStorage.setItem("city", cityName);
 
         // Empty the search bar
         $("#city-search").val("");
@@ -80,7 +81,11 @@ function getCityWeatherDescription(city) {
 
     // Append all the elements to the box of the city weather descriptions.
     $("#city-weather").append(cityTitle, cityTemp, cityHumidity, cityWindSpeed);
-};
+    
+    // Save the data in localStorage
+    localStorage.setItem(cityTitle, {"city" : cityTitle, "temp" : cityTemp, "humidity" : cityHumidity, "windspeed" : cityWindSpeed});
+
+};        
 
 // Get UV Index
 function getUVIndex(city) {
@@ -129,6 +134,9 @@ function getUVIndex(city) {
         // Append the UV Index value to the city weather description box
         $("#city-weather").append(cityUVindex);
 
+        // save uv index in local storage
+        localStorage.setItem(city, {"uvindex" : cityUVindex});
+
     });
 };
 
@@ -152,13 +160,43 @@ function getFiveDayForecast(city) {
         console.log(forecastResponse.list[0].weather[0].icon);
         console.log(forecastResponse.list[0].main.temp);
         console.log(forecastResponse.list[0].main.humidity);
+        console.log(forecastResponse.list[0].dt_txt);
 
-        let newDiv = $("<div>");
-        let newImg = $("<img>");
-        newImg.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[0].weather[0].icon + ".png");
+        let getForecastDay1Date = moment().add(1, "days").format("YYYY/MM/DD");
+        //let getForecastDay2Date = forecastResponse.list[4].dt_txt;
+        //let getForecastDay3Date = forecastResponse.list[12].dt_txt;
+        //let getForecastDay4Date = forecastResponse.list[20].dt_txt;
+        //let getForecastDay5Date = forecastResponse.list[28].dt_txt;
 
-        newDiv.append(newImg);
 
-        $(".card").append(newDiv);
+        let cardDeck1El = $("<div>");
+        cardDeck1El.addClass("card-deck");
+
+        let card1El = $("<div>");
+        card1El.addClass("card bg-primary");
+
+        let cardBody1El = $("<div>");
+        cardBody1El.add("card-body text-center");
+
+        let forecastDay1Date = $("<h1>");
+        forecastDay1Date.text(getForecastDay1Date);
+        let forecastIcon1 = $("<img>");
+        forecastIcon1.attr("src", "https://openweathermap.org/img/w/" + forecastResponse.list[1].weather[0].icon + ".png");
+        let forecastTemp1 = $("<p>");
+        forecastTemp1.text("Temp: " + forecastResponse.list[1].main.temp + " °F");
+        let forecastHumidity1 = $("<p>");
+        forecastHumidity1.text("Humidity: " + forecastResponse.list[1].main.humidity + "%");
+
+        cardBody1El.append(forecastDay1Date, forecastIcon1, forecastTemp1, forecastHumidity1);
+        card1El.append(cardBody1El);
+        cardDeck1El.append(card1El);
+
+
+
+
+            
+
+        $(".card").append(cardDeck1El);
+        
     });
 };

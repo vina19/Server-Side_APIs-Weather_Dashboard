@@ -101,7 +101,22 @@ function getUVIndex(city) {
         // Create <p> element for the UV Index value 
         let cityUVindex = $("<p>");
         cityUVindex.addClass("city-uv-index");
-        cityUVindex.text("UV Index: " + UVindexResponse.value);
+        cityUVindex.text("UV Index: ");
+
+        let UVIndexText = $("<span>");
+        UVIndexText.text(UVindexResponse.value);
+
+        cityUVindex.append(UVIndexText);
+
+        if (UVindexResponse.value <= 2) {
+            UVIndexText.css({"background": "green", "color": "white", "padding" : "5px"});
+        }
+        else if (UVindexResponse.value == 3 || UVindexResponse.value <= 7) {
+            UVIndexText.css({"background": "orange", "color": "white", "padding" : "5px"});
+        }
+        else if (UVindexResponse >= 8) {
+            UVIndexText.css({"background": "red", "color": "white", "padding" : "5px"});
+        }
 
         // Append the UV Index value to the city weather description box
         $("#city-weather").append(cityUVindex);

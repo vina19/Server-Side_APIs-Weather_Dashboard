@@ -1,19 +1,18 @@
 // OpenWeather API key
 let myAPIkey = "0906529f0e63b6d51e5251dfa653e405";
 
+// Save the city description to the localstorage
+let citiesDesc = JSON.parse(localStorage.getItem('citiesDesc')) || [];
+
 // When the document html ready then run the functions insied it
 $(document).ready(function() {
     
     // Function that will run after the search button clicked
     $("#search-btn").on("click", function() {
 
-        // Get the search city input from the user
+        // Create a variable for the input name from the user
         let cityName = $("#city-search").val();
-        localStorage.setItem("city", cityName);
 
-        // Empty the search bar
-        $("#city-search").val("");
-        
         // Create a button list with the name of the city that the user input
         let cityList = $("#city-list");
         let city = $("<a>");
@@ -22,93 +21,89 @@ $(document).ready(function() {
 
         cityList.append(city);
 
-        // URL where the data is from
-        let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + myAPIkey;
+        // Call the getCityWeatherDescription to fill in the city weather description box
+        getCityWeatherDescription(cityName);
+    });
 
-        // Create an AJAX call to retrieve the data from OpenWeather API by the city
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response) {
+    $(".city").on("click", function() {
 
-            // Call the getCityWeatherDescription and getUVIndex to fill in the city weather description box
-            getCityWeatherDescription(response);
-            getUVIndex(response);
+        // Create a variable for the input name from the user
+        let cityName = $("#city-search").val();
+        
+        $("#city-weather").empty();
+        $("#forecast-cards-1").empty();
+        $("#forecast-cards-2").empty();
+        $("#forecast-cards-3").empty();
+        $("#forecast-cards-4").empty();
+        $("#forecast-cards-5").empty();
 
-            // Call the getFiveDayForecast to show the five day forecast inside the 5 days forecast cards
-            getFiveDayForecast(response);
-
-
-            // After the city button click (still need to fix this)
-            $(".city").on("click", function(){
-
-                $("#city-weather").empty();
-                $("#forecast-cards-1").empty();
-                $("#forecast-cards-2").empty();
-                $("#forecast-cards-3").empty();
-                $("#forecast-cards-4").empty();
-                $("#forecast-cards-5").empty();
-
-                getCityWeatherDescription(response);
-                getUVIndex(response);
-                getFiveDayForecast(response);
-            });
-
-        });
+        // Call the getCityWeatherDescription to fill in the city weather description box
+        getCityWeatherDescription(cityName);
     });
 });
 
 function getCityWeatherDescription(city) {
 
-    // Empty the box everytime the user search a different city
-    $("#city-weather").empty();
+    // Empty the search bar
+    $("#city-search").val("");
 
-    // Get current date
-    let currentDate = moment().format("L");
+    // URL where the data is from
+    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + myAPIkey;
 
-    // Convert the temperature Celsius to Fahrenheit
-    let tempToF = Math.floor((city.main.temp - 273.15) * 1.80 + 32);
+    // Create an AJAX call to retrieve the data from OpenWeather API by the city
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+
+        // Empty the box everytime the user search a different city
+        $("#city-weather").empty();
+
+        // Get current date
+        let currentDate = moment().format("L");
+
+        // Convert the temperature Celsius to Fahrenheit
+        let tempToF = Math.floor((response.main.temp - 273.15) * 1.80 + 32);
     
-    // Create elements and add the city weather descriptions to the box
-    // City weather descriptions: Name of the city, current date, temperature,
-    // Humidity, wind speed, and UV index (will get this uv index in different function).
-    let cityTitle = $("<h1>");
-    cityTitle.addClass("city-title");
+        // Create elements and add the city weather descriptions to the box
+        // City weather descriptions: Name of the city, current date, temperature,
+        // Humidity, wind speed, and UV index (will get this uv index in different function).
+        let cityTitle = $("<h1>");
+        cityTitle.addClass("city-title");
 
-    let weatherIcon = $("<img>");
-    // get the idea of which link  grab the weather icon image from: 
-    // https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
-    weatherIcon.attr("src", "https://openweathermap.org/img/w/" + city.weather[0].icon + ".png");
+        let weatherIcon = $("<img>");
+        // get the idea of which link  grab the weather icon image from: 
+        // https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
+        weatherIcon.attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
     
-    cityTitle.text(city.name + " " + currentDate);
-    cityTitle.append(weatherIcon);
+        cityTitle.text(response.name + " " + currentDate);
+        cityTitle.append(weatherIcon);
 
-    let cityTemp = $("<p>");
-    cityTemp.addClass("city-temp");
-    cityTemp.text("Temperature: " + tempToF + " °F");
+        let cityTemp = $("<p>");
+        cityTemp.addClass("city-temp");
+        cityTemp.text("Temperature: " + tempToF + " °F");
 
-    let cityHumidity = $("<p>");
-    cityHumidity.addClass("city-humidity");
-    cityHumidity.text("Humidity: " + city.main.humidity + "%");
+        let cityHumidity = $("<p>");
+        cityHumidity.addClass("city-humidity");
+        cityHumidity.text("Humidity: " + response.main.humidity + "%");
 
-    let cityWindSpeed = $("<p>");
-    cityWindSpeed.addClass("city-wind-speed");
-    cityWindSpeed.text("Wind Speed: " + city.wind.speed + " MPH");
+        let cityWindSpeed = $("<p>");
+        cityWindSpeed.addClass("city-wind-speed");
+        cityWindSpeed.text("Wind Speed: " + response.wind.speed + " MPH");
 
-    // Append all the elements to the box of the city weather descriptions.
-    $("#city-weather").append(cityTitle, cityTemp, cityHumidity, cityWindSpeed);
+        // Append all the elements to the box of the city weather descriptions.
+        $("#city-weather").append(cityTitle, cityTemp, cityHumidity, cityWindSpeed);
     
-    // Save the data in localStorage
-    localStorage.setItem(cityTitle, {"city" : cityTitle, "temp" : cityTemp, "humidity" : cityHumidity, "windspeed" : cityWindSpeed});
+        // Save the data in localStorage
+        localStorage.setItem('citiesDesc', JSON.stringify(cityTitle, cityTemp, cityHumidity, cityWindSpeed));
 
-};        
+        getUVIndex(response.coord.lon, response.coord.lat);
+        getFiveDayForecast(response.name);
+
+});        
 
 // Get UV Index
-function getUVIndex(city) {
-
-    // Get the latitude and longitude of the city
-    let cityLat = city.coord.lat;
-    let cityLon = city.coord.lon;
+function getUVIndex(cityLon, cityLat) {
 
     // URLto get the uv index data
     let cityUVIndexQueryUrl =  "https://api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLon + "&appid=" + myAPIkey;
@@ -151,7 +146,7 @@ function getUVIndex(city) {
         $("#city-weather").append(cityUVindex);
 
         // save uv index in local storage
-        localStorage.setItem(city, {"uvindex" : cityUVindex});
+        localStorage.setItem('citiesDesc', JSON.stringify(cityUVindex));
 
     });
 };
@@ -166,14 +161,8 @@ function getFiveDayForecast(city) {
     $("#forecast-cards-4").empty();
     $("#forecast-cards-5").empty();
 
-    // Get the city name
-    let cityForecastName = city.name;
-
-    // Convert the temperature Celsius to Fahrenheit
-    let tempToF1 = Math.floor((city.main.temp - 273.15) * 1.80 + 32);
-
     // The URL API to get the 5 day forecast
-    let fiveDayForecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityForecastName + "&appid=" + myAPIkey;
+    let fiveDayForecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + myAPIkey;
 
     // Create an AJAX call to retrive the five day forecast data
     $.ajax({
@@ -246,6 +235,5 @@ function getFiveDayForecast(city) {
         $("#forecast-cards-3").append(forecastDay3Date, forecastIcon3, forecastTemp3, forecastHumidity3);
         $("#forecast-cards-4").append(forecastDay4Date, forecastIcon4, forecastTemp4, forecastHumidity4);
         $("#forecast-cards-5").append(forecastDay5Date, forecastIcon5, forecastTemp5, forecastHumidity5);
-
     });
-};
+}};

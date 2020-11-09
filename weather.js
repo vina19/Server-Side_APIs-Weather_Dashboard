@@ -111,7 +111,7 @@ function getUVIndex(city) {
     let cityLon = city.coord.lon;
 
     // URLto get the uv index data
-    let cityUVIndexQueryUrl =  "http://api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLon + "&appid=" + myAPIkey;
+    let cityUVIndexQueryUrl =  "https://api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLon + "&appid=" + myAPIkey;
 
     // Create an AJAX call to retrieve the uv index data
     $.ajax({
@@ -173,7 +173,7 @@ function getFiveDayForecast(city) {
     let tempToF1 = Math.floor((city.main.temp - 273.15) * 1.80 + 32);
 
     // The URL API to get the 5 day forecast
-    let fiveDayForecastUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityForecastName + "&appid=" + myAPIkey;
+    let fiveDayForecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityForecastName + "&appid=" + myAPIkey;
 
     // Create an AJAX call to retrive the five day forecast data
     $.ajax({

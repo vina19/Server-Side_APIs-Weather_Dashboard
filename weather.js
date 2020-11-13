@@ -1,11 +1,13 @@
 // OpenWeather API key
 let myAPIkey = "0906529f0e63b6d51e5251dfa653e405";
 
-// Save the city description to the localstorage
-let citiesDesc = JSON.parse(localStorage.getItem('citiesDesc')) || [];
+// city name arrays
+let citySearchHistory = [];
 
 // When the document html ready then run the functions insied it
 $(document).ready(function() {
+
+    getCitySearch();
     
     // Function that will run after the search button clicked
     $("#search-btn").on("click", function() {
@@ -13,39 +15,24 @@ $(document).ready(function() {
         // Create a variable for the input name from the user
         let cityName = $("#city-search").val();
 
-        // Create a button list with the name of the city that the user input
-        let cityList = $("#city-list");
-        let city = $("<a>");
-        city.addClass("list-group-item list-group-item-action city");
-        city.text(cityName);
-
-        cityList.append(city);
-
         // Call the getCityWeatherDescription to fill in the city weather description box
         getCityWeatherDescription(cityName);
-    });
 
-    $(".city").on("click", function() {
+        // Empty the search bar
+        $("#city-search").val("");
 
-        // Create a variable for the input name from the user
-        let cityName = $("#city-search").val();
-        
-        $("#city-weather").empty();
-        $("#forecast-cards-1").empty();
-        $("#forecast-cards-2").empty();
-        $("#forecast-cards-3").empty();
-        $("#forecast-cards-4").empty();
-        $("#forecast-cards-5").empty();
+        // Add the city name to the city search history array
+        citySearchHistory.push(cityName);
 
-        // Call the getCityWeatherDescription to fill in the city weather description box
-        getCityWeatherDescription(cityName);
+        // Set the city name as the city search history to the localStorage
+        localStorage.setItem("citySearchedHistory", JSON.stringify(citySearchHistory));
+
+        // Call the save function to save the city search
+        saveCitySearch();
     });
 });
 
 function getCityWeatherDescription(city) {
-
-    // Empty the search bar
-    $("#city-search").val("");
 
     // URL where the data is from
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + myAPIkey;
@@ -94,9 +81,6 @@ function getCityWeatherDescription(city) {
         // Append all the elements to the box of the city weather descriptions.
         $("#city-weather").append(cityTitle, cityTemp, cityHumidity, cityWindSpeed);
     
-        // Save the data in localStorage
-        localStorage.setItem('citiesDesc', JSON.stringify(cityTitle, cityTemp, cityHumidity, cityWindSpeed));
-
         getUVIndex(response.coord.lon, response.coord.lat);
         getFiveDayForecast(response.name);
 
@@ -145,8 +129,6 @@ function getUVIndex(cityLon, cityLat) {
         // Append the UV Index value to the city weather description box
         $("#city-weather").append(cityUVindex);
 
-        // save uv index in local storage
-        localStorage.setItem('citiesDesc', JSON.stringify(cityUVindex));
 
     });
 };
@@ -237,3 +219,41 @@ function getFiveDayForecast(city) {
         $("#forecast-cards-5").append(forecastDay5Date, forecastIcon5, forecastTemp5, forecastHumidity5);
     });
 }};
+
+// function to save the city that the user want to search 
+function saveCitySearch() {
+
+    // Empty the search history
+    $("#city-list").empty();
+
+    // Create a button list with the name of the city that the user input
+    // Looping through the city search history array and get the city search history
+    for (let i=0; i < citySearchHistory.length; i++) {
+
+        let cityList = $("#city-list");
+        let city = $("<a>");
+        city.addClass("list-group-item list-group-item-action city");
+        city.text(citySearchHistory[i]);
+
+        cityList.append(city);
+    };
+
+    // if the city button click then get the weather description and five day forecast 
+    // from the city that clicked
+    $(".city").on("click", function() {
+        getCityWeatherDescription($(this).text());
+    });
+};
+
+// Function to get the search history item from the local storage
+function getCitySearch() {
+    
+    let storedCitySearched = JSON.parse(localStorage.getItem("citySearchedHistory"));
+
+    // if stored city search from local storage null then city search will be the same as the one in the array
+    if (storedCitySearched !== null) {
+        citySearchHistory = storedCitySearched;
+    }
+
+    saveCitySearch();
+};

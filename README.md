@@ -11,7 +11,7 @@
 
 ## Project Example
 
-[https://vina19.github.io/Server-Side_APIs-Weather_Dashboard/]https://vina19.github.io/Server-Side_APIs-Weather_Dashboard/
+[https://vina19.github.io/Server-Side_APIs-Weather_Dashboard/](https://vina19.github.io/Server-Side_APIs-Weather_Dashboard/)
 
 ## Weather Dashboard
 

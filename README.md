@@ -26,6 +26,9 @@
 #### - JavaScript, jQuery, AJAX
 #### - Moment.js
 
+# Contact:
+vinakurniasari94@gmail.com
+
 ## The MIT License (MIT)
 #### Copyright © 2020 <Vina Kurniasari>
 

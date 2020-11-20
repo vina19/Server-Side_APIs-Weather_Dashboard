@@ -9,7 +9,7 @@
 
 #### Access the folder with your favorite code editor.
 
-## Project Example
+## Live Link to Deployed App
 
 [https://vina19.github.io/Server-Side_APIs-Weather_Dashboard/](https://vina19.github.io/Server-Side_APIs-Weather_Dashboard/)
 
